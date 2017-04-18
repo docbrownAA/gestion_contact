@@ -40,7 +40,7 @@
                   <tr ng-repeat="p in vm.personnes" ng-click="vm.selectPersonne(p.id)">
                     <td>{{p.nom}}</td>
                     <td>{{p.prenom}}</td>
-                    <td>{{p.date_naissance}} | filter  </td>
+                    <td>{{p.date_naissance | ageFilter}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -52,15 +52,27 @@
         </div>
         <div class="col-md-6">
           <div class="widget wgreen">
-            <div ht-widget-header title="{{vm.news.title}}" allow-collapse="true"></div>
+            <div ht-widget-header title="{{vm.personneSelected.nom}} {{vm.personneSelected.prenom}}" allow-collapse="true" ></div>
             <div class="widget-content text-center text-info">
-              <personne></personne>
+              <personne-detail det-personne="vm.personneSelected"></personne-selected>
             </div>
             <div class="widget-foot">
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
+        <br>
+        <!-- <div class="col-md-6">
+          <div class="widget wgreen">
+            <div ht-widget-header title="{{vm.news.title}}" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <personne-detail det-personne="{{vm.personneSelected}}"></personne-selected>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
   </section>

@@ -10,27 +10,36 @@
 			getPersonnes: getPersonnes,
 			getPersonne: getPersonne,
 			savePersonne: savePersonne,
-			deletePersonne: deletePersonne
+			deletePersonne: deletePersonne,
+			updatePersonne: updatePersonne
 		};
 
 		function getPersonnes() {
-			return $http.get(urlBase+'/personnes').then(success).catch(fail);
-			function success(response){
+			return $http.get(urlBase + '/personnes').then(success).catch(fail);
+
+			function success(response) {
+				for (var i = 0; i < response.data.length; i++) {
+					response.data[i].date_naissance = new Date(response.data[i].date_naissance);
+				}
 				return response.data;
 			}
-			function fail(e){
+
+			function fail(e) {
 				return exception.catcher('XHR Failed for getPeople')(e);
 			}
 		};
 
 		function getPersonne(id) {
 
-			return $http.get(urlBase+'/personnes/'+id).then(success).catch(fail);
-			function success(response){
+			return $http.get(urlBase + '/personnes/' + id).then(success).catch(fail);
+
+			function success(response) {
+				response.data.date_naissance = new Date(response.data.date_naissance);
 				return response.data;
 			}
-			function fail(e){
-				return exception.catcher('XHR Failed for getPersonnes('+id+')')(e);
+
+			function fail(e) {
+				return exception.catcher('XHR Failed for getPersonnes(' + id + ')')(e);
 			}
 
 		};
@@ -47,7 +56,19 @@
 			});
 		};
 
-		function deletePersonne(idPersonne){
+		function updatePersonne(personne){
+			return $http({
+				method: 'PUT',
+				data: personne,
+				url: urlBase + 'personnes/'+personne.id
+			}).success(function(response) {
+				console.log(response);
+			}).error(function(response) {
+				console.log(response);
+			});
+		}
+
+		function deletePersonne(idPersonne) {
 			return $http({
 				method: 'DELETE',
 				data: idPersonne,

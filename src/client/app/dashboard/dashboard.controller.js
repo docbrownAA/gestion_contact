@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'personneservice'];
+  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'personneservice','$filter'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger, personneservice) {
+  function DashboardController($q, dataservice, logger, personneservice,$filter) {
     var vm = this;
     vm.news = {
       title: 'gestionContact',
@@ -45,7 +45,6 @@
     function getPersonnes() {
       return personneservice.getPersonnes().then(function(data) {
         vm.personnes = data;
-        console.log(data);
         return vm.personnes;
       });
     }
@@ -53,7 +52,6 @@
     function getPersonne(id){
       return personneservice.getPersonne(id).then(function(data){
         vm.personneSelected = data;
-        console.log(data);
         return vm.personneSelected;
       })
     }

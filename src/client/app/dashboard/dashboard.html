@@ -4,21 +4,6 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="today-datas">
-            <li class="blightblue">
-              <div class="pull-left"><i class="fa fa-plane"></i></div>
-              <div class="datas-text pull-right">
-                <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
-              </div>
-              <div class="clearfix"></div>
-            </li>
-
-            <li class="borange">
-              <div class="pull-left"><i class="fa fa-envelope"></i></div>
-              <div class="datas-text pull-right">
-                <span class="bold">{{vm.messageCount}}</span> Messages
-              </div>
-              <div class="clearfix"></div>
-            </li>
 
           </ul>
         </div>
@@ -28,22 +13,27 @@
           <div class="widget wviolet">
             <div ht-widget-header title="People" allow-collapse="true"></div>
             <div class="widget-content text-center text-info">
-              <table class="table table-condensed table-striped">
+              <table class="table table-condensed table-striped" >
                 <thead>
                   <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Age</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="p in vm.personnes" ng-click="vm.selectPersonne(p.id)">
-                    <td>{{p.nom}}</td>
+                  <tr ng-repeat="p in vm.personnes" >
+                    <td ng-click="vm.selectPersonne(p.id)">{{p.nom}}</td>
                     <td>{{p.prenom}}</td>
                     <td>{{p.date_naissance | ageFilter}}</td>
+                    <td><button ng-click="vm.deletePersonne(p.id)">x</button></td>
                   </tr>
                 </tbody>
               </table>
+                <tfoot>
+                  <tr><button ng-click="vm.getPersonnes()">refresh</button></tr>
+                </tfoot>
             </div>
             <div class="widget-foot">
               <div class="clearfix"></div>
@@ -54,25 +44,25 @@
           <div class="widget wgreen">
             <div ht-widget-header title="{{vm.personneSelected.nom}} {{vm.personneSelected.prenom}}" allow-collapse="true" ></div>
             <div class="widget-content text-center text-info">
-              <personne-detail det-personne="vm.personneSelected"></personne-selected>
+              <personne-detail det-personne="vm.personneSelected" update-list="vm.getPersonnes()"></personne-selected>
             </div>
             <div class="widget-foot">
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
+       <!--  <div class="col-md-12">
+         <div class="widget wgreen">
+           <div ht-widget-header title="Nouveau" allow-collapse="true" ></div>
+           <div class="widget-content text-center text-info">
+             <personne-detail det-personne="vm.personneSelected"></personne-selected>
+           </div>
+           <div class="widget-foot">
+             <div class="clearfix"></div>
+           </div>
+         </div>
+       </div> -->
         <br>
-        <!-- <div class="col-md-6">
-          <div class="widget wgreen">
-            <div ht-widget-header title="{{vm.news.title}}" allow-collapse="true"></div>
-            <div class="widget-content text-center text-info">
-              <personne-detail det-personne="{{vm.personneSelected}}"></personne-selected>
-            </div>
-            <div class="widget-foot">
-              <div class="clearfix"></div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </section>

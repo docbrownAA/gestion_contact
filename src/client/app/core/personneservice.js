@@ -57,6 +57,7 @@
 		};
 
 		function updatePersonne(personne){
+			console.log(personne);
 			return $http({
 				method: 'PUT',
 				data: personne,

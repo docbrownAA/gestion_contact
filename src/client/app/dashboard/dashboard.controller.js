@@ -18,6 +18,8 @@
     vm.personnes = [];
     vm.title = 'Dashboard';
     vm.selectPersonne = selectPersonne;
+    vm.getPersonnes = getPersonnes;
+    vm.deletePersonne = deletePersonne;
 
     activate();
 
@@ -57,6 +59,12 @@
     }
     function selectPersonne(id){
       getPersonne(id);
+    }
+
+    function deletePersonne(id){
+      return personneservice.deletePersonne(id).then(function(){
+        vm.getPersonnes();
+      });
     }
   }
 })();

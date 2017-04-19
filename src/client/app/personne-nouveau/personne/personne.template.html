@@ -1,0 +1,12 @@
+<form novalidate>
+    Nom:<br>
+    <input type="text" ng-model="vm.personne.nom"><br>
+    Prénom:<br>
+    <input type="text" ng-model="vm.personne.prenom">
+    Date de naissance:
+    <input type="date" ng-model="vm.personne.date_naissance">
+    <br><br>
+    <button ng-click="vm.reset()">RESET</button>
+    <button ng-click="vm.cancel()">Annuler</button>
+    <button ng-click="vm.save()">Sauvegarder</button>
+  </form>

@@ -3,29 +3,43 @@
 	angular.module('app.layout')
 		.directive('personneDetail', personneDetail);
 
+		personneDetail.$inject = ['personneservice'];
+
 	/* @ngInject */
-	function personneDetail() {
+	function personneDetail(personneservice) {
 		var directive = {
-			/*controller: personneDetailController,
-			controllerAs: 'vm',*/
-			restrict: 'EA',
-			//bindToController: true,
-			templateUrl: 'app/layout/personne-detail.html',
 			scope: {
-				personne: '=detPersonne'
+				personne: '=detPersonne',
+				updateList:'&'
 			},
-			link:link
-			//translude: true
-
+			templateUrl: 'app/layout/personne-detail.html',
+			restrict: 'EA',
+			link: link
 		};
-
 		return directive;
-		//link.$inject = ['personneservice'];
+		function link(scope) {
+			scope.master = scope.personne;
 
-		function link(personneservice,scope) {
 			scope.update = function(personne) {
-				console.log('coucou');
-				personneservice.updatePersonne(personne);
+				personneservice.updatePersonne(personne).then(function(success){
+
+				scope.updateList();
+				},
+				function(error){
+
+				});
+			};
+			scope.reset = function(){
+				scope.personne = angular.copy(scope.master);
+			}
+			scope.save = function(personne){
+				personneservice.savePersonne(personne).then(function(success){
+
+				scope.updateList();
+				},
+				function(error){
+					
+				});;
 			}
 		}
 

@@ -1,17 +1,19 @@
-<form class="simple-form">
-<h3>Personne</h3>
-	<label>Nom:</label><input type="text" ng-model="personne.nom"/><br>
-	<label>Prénom:</label><input type="text" ng-model="personne.prenom"><br>
-	<label>Date naissance:</label><input type="date" ng-model="personne.date_naissance"><br>
+<form class="css-form">
+<h3>Personne {{personne.id}}</h3>
+	<label>Nom:</label><input type="text" required ng-model="personne.nom"/><br>
+	<label>Prénom:</label><input type="text" required ng-model="personne.prenom"><br>
+	<label>Date naissance:</label><input type="date" required ng-model="personne.date_naissance"><br>
 	<h3>Detail</h3>
-	<label>Sexe:<input type="text" ng-model="personne.personneDetail.sexe"></label><br>
-	<label>Numéro Secu:<input type="text" ng-model="personne.personneDetail.numSecu"></label><br>
+	<label>Sexe:<input type="text" required ng-model="personne.personneDetail.sexe"></label><br>
+	<label>Numéro Secu:<input type="text" requireds ng-model="personne.personneDetail.numSecu"></label><br>
 <h3>Adresses</h3>
 <div ng-show="personne.personnesAdresses.length !==0">
-	ok
-</div>	
-	<input type="submit" ng-click="update(personne)" value="Sauvegarder" />
+</div>
+	<input ng-click="save(personne)" ng-show="personne.id == null" value="Nouveau" type="submit" />	
+	<input ng-click="update(personne)" ng-show="personne.id != null && personne.id != ''" value="MaJ" type="submit" />
+	<input type="button" value="Reset" ng-click="reset()" />
 </form>
+
 
 <!-- 
 {

@@ -1,0 +1,13 @@
+<form name="formPersonne" class="form-personne">
+  <h3>Personne </h3>
+  <label for="nom">Nom:</label><input id="nom" type="text"  ng-model="personne.nom"/><br>
+  <label for="prenom">Prénom:</label><input id="prenom" type="text"  ng-model="personne.prenom"><br>
+  <label for="datenaissance">Date naissance:</label><input id="datenaissance" type="date"  ng-model="personne.dateNaissance"><br>
+  <h3>Detail</h3>
+  <label for="sexe" >Sexe:</label><input id="sexe" type="text"  ng-model="personne.personneDetail.sexe"><br>
+  <label for="numsecu" >Numéro Secu:</label><input id="numsecu" type="text"  ng-model="personne.personneDetail.numSecu"><br>
+ <br>
+   <input ng-click="save(personne)" ng-show="personne.id == null" value="Nouveau" type="submit" />
+  <input ng-click="update(personne)" ng-show="personne.id != null && personne.id != ''" value="MaJ" type="submit" /> 
+  <input type="button" value="Annuler" ng-click="reset()" />
+</form>

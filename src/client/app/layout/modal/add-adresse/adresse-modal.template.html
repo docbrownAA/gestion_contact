@@ -1,0 +1,11 @@
+<form name="formAdresse" class="form-personne" form-step-validity>
+  <label for="libelle">Libelle</label><input id="libelle" type="text" ng-model="vm.adresse.libelle" required/>
+  <label for="ville">Ville</label><select id="ville" name="" ng-model="vm.villeId" required>
+  <option ng-repeat="v in vm.villes" value="{{v.id}}">{{v.nom}}</option>
+</select>
+<label for="debut">Début</label><input type="date" id="debut" ng-model="vm.personneadresse.debut" required/>
+<label for="fin">Fin</label><input type="date" id="fin" ng-model="vm.personneadresse.fin" />
+<label for="principal">Principale ?</label><input type="checkbox" id="principal" ng-model="vm.personneadresse.principal" >
+<input type="submit" class="btn btn-success" value="Enregistrer" ng-click="vm.save()" ng-disabled="!$getActiveStep().valid"/>
+<input type="cancel" class="btn btn-danger" value="Annuler" ng-click="vm.reset()" />
+</form>

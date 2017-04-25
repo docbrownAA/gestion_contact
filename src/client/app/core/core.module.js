@@ -3,8 +3,8 @@
 
   angular
     .module('app.core', [
-      'ngAnimate', 'ngSanitize',
+      'ngAnimate', 'ngSanitize','multiStepForm',
       'blocks.exception', 'blocks.logger', 'blocks.router',
-      'ui.router', 'ngplus'
+      'ui.router', 'ngplus', 'ui.bootstrap'
     ]);
 })();

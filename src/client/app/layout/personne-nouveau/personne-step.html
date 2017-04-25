@@ -1,0 +1,11 @@
+<form name="formPersonne" class="form-personne" form-step-validity>
+  <h3>Personne </h3>
+  <label for="nom">Nom:</label><input id="nom" type="text"  ng-model="vm.personne.nom" required /><br>
+  <label for="prenom">Prénom:</label><input id="prenom" type="text"  ng-model="vm.personne.prenom" required><br>
+  <label for="datenaissance">Date naissance:</label><input id="datenaissance" type="date"  ng-model="vm.personne.dateNaissance" required><br>
+  <h3>Detail</h3>
+  <label for="sexe" >Sexe:</label><input id="sexe" type="text"  ng-model="vm.personne.personneDetail.sexe"><br>
+  <label for="numsecu" >Numéro Secu:</label><input id="numsecu" type="text"  ng-model="vm.personne.personneDetail.numSecu"><br>
+ <br>
+  <input type="cancel" class="btn btn-danger" value="Annuler" ng-click="vm.reset()" />
+</form>

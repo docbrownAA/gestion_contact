@@ -1,10 +1,6 @@
 (function() {
 	'use strict';
-	/**
-	 *  Module
-	 *
-	 * Description
-	 */
+/* @ngInject */
 	angular.module('app.core')
 		.filter('ageFilter', function() {
 
@@ -25,11 +21,11 @@
 			return function(bithDate) {
 				bithDate = new Date(bithDate);
 				var age = calculateAge(bithDate);
-				if (age == 0) {
+				if (age === 0) {
 					return monthDiff(bithDate, new Date()) + ' mois';
 				}
 				return age;
-			}
+			};
 		});
 
 

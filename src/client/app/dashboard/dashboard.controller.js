@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'personneservice','$filter'];
+  DashboardController.$inject = ['$q', 'dataservice', 'logger', 'personneservice', '$filter','$uibModal','$document'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger, personneservice,$filter) {
+  function DashboardController($q, dataservice, logger, personneservice, $filter,$uibModal,$document) {
     var vm = this;
     vm.news = {
       title: 'gestionContact',
@@ -20,27 +20,18 @@
     vm.selectPersonne = selectPersonne;
     vm.getPersonnes = getPersonnes;
     vm.deletePersonne = deletePersonne;
+    vm.addAdresse = addAdresse;
+
+    vm.animationsEnabled = true;
+
+    
 
     activate();
 
     function activate() {
-      var promises = [getMessageCount(), getPersonnes()];
+      var promises = [getPersonnes()];
       return $q.all(promises).then(function() {
         logger.info('Activated Dashboard View');
-      });
-    }
-
-    function getMessageCount() {
-      return dataservice.getMessageCount().then(function(data) {
-        vm.messageCount = data;
-        return vm.messageCount;
-      });
-    }
-
-    function getPeople() {
-      return dataservice.getPeople().then(function(data) {
-        vm.people = data;
-        return vm.people;
       });
     }
 
@@ -51,19 +42,33 @@
       });
     }
 
-    function getPersonne(id){
-      return personneservice.getPersonne(id).then(function(data){
+    function getPersonne(id) {
+      return personneservice.getPersonne(id).then(function(data) {
         vm.personneSelected = data;
         return vm.personneSelected;
-      })
+      });
     }
-    function selectPersonne(id){
+
+    function selectPersonne(id) {
       getPersonne(id);
     }
 
-    function deletePersonne(id){
-      return personneservice.deletePersonne(id).then(function(){
+    function deletePersonne(id) {
+      return personneservice.deletePersonne(id).then(function() {
         vm.getPersonnes();
+      });
+    }
+
+    function addAdresse(){
+      var modalInstance = $uibModal.open({
+        animation: vm.animationsEnabled,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy:'modal-body',
+        templateUrl:'app/layout/modal/add-adresse/adresse-modal.template.html',
+        controller:'ModalAdresseCtrl',
+        conrollerAs:'vm',
+        personne:vm.personneSelected
+
       });
     }
   }

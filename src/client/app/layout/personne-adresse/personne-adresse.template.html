@@ -1,0 +1,23 @@
+<h3>Adresses</h3>
+<table class="table table-condensed table-striped" ng-show="true">
+<thead>
+  <tr>
+    <th>Libelle</th>
+    <th>Ville</th>
+    <th>Début</th>
+    <th>Fin</th>
+    <th>Principale</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr ng-repeat="pa in personne.personnesAdresses" >
+    <td>{{pa.adresse.libelle}}</td>
+    <td>{{pa.adresse.ville.nom}}</td>
+    <td>{{pa.debut}}</td>
+    <td>{{pa.fin}}</td>
+    <td>{{pa.principale}}</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
